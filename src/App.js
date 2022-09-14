@@ -1,7 +1,8 @@
 import { useState } from "react";
 import QRCode from "react-qr-code";
 import QRCodeLink from "qrcode";
-import "./App.css";
+import { GlobalStyle } from "./Components/GlobalStyle.styles";
+import { Container, Box, Inputs, Links, Title } from "./Components/App.styles";
 
 function App() {
   const [link, setLink] = useState("");
@@ -22,22 +23,22 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <div className="box-qrcode">
-        <h1>Gerador de QR Code</h1>
+    <Container>
+      <GlobalStyle />
+      <Box>
+        <Title>Gerador de QR Code</Title>
         <QRCode 
           value={link}
         />
-        <input
-          className="input"
-          placeholder="Digite seu link..."  
+        <Inputs
+          placeholder="Digite seu link..."
           value={link}
-          onChange={ (e) => handleQrcode(e)}    
+          onChange={ (e) => handleQrcode(e)}
         />
-        <a href={link} target="_blank" rel="noopener noreferrer">Acessar link</a>
-        <a href={qrcodeLink} download={`qrcode.png`}>Baixar QR Code</a>
-      </div>
-    </div>
+        <Links href={link} target="_blank">Acessar Link</Links>
+        <Links href={qrcodeLink} download={`qrcode.png`}>Baixar QR Code</Links>
+      </Box>
+    </Container>
   );
 }
 
